@@ -1,9 +1,12 @@
 import 'package:ai4d_pests_app/constants/routes.dart';
+import 'package:ai4d_pests_app/infra/di.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:ai4d_pests_app/ui/pages/pages.dart';
 
 void main() {
+  DI.inject();
+
   return runApp(
     GetMaterialApp(
       title: "RS2Lab - Pests App",
