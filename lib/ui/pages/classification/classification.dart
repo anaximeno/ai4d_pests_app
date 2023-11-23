@@ -18,9 +18,13 @@ class ClassificationPage extends GetView<ClassificationController> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            BigButton(
-              text: "Pick File",
-              onClik: controller.pickFile,
+            Obx(
+              () => controller.file == null
+                  ? BigButton(
+                      text: "Pick Image",
+                      onClik: controller.pickFile,
+                    )
+                  : Image.file(controller.file!),
             ),
           ],
         ),
