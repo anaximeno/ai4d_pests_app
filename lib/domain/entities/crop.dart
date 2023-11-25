@@ -1,8 +1,9 @@
 class CropEntity {
+  int? id;
   String? name;
 
-  CropEntity({this.name});
+  CropEntity({this.id, this.name});
 
   factory CropEntity.fromJson(Map<String, dynamic> json) =>
-      CropEntity(name: json["name"] as String?);
+      CropEntity(id: json["id"] as int?, name: json["name"] as String?);
 }
