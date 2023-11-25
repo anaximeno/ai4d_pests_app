@@ -4,11 +4,11 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 class ImageFileEntity {
-  final String name;
+  String name;
 
-  final Uint8List? bytes;
+  Uint8List? bytes;
 
-  final String? path;
+  String? path;
 
   ImageFileEntity({required this.name, this.bytes, this.path});
 
@@ -22,7 +22,10 @@ class ImageFileEntity {
                   height: height,
                   child: const Text(
                     'Image could not be uploaded!',
-                    style: TextStyle(color: Colors.redAccent, fontSize: 16),
+                    style: TextStyle(
+                      color: Colors.redAccent,
+                      fontSize: 16,
+                    ),
                   ),
                 );
 }
