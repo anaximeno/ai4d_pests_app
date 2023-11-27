@@ -1,4 +1,3 @@
-import 'package:ai4d_pests_app/constants/http_method.dart';
 import 'package:dio/dio.dart' as dio;
 
 class Api {
