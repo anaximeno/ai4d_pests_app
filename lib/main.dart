@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:ai4d_pests_app/ui/pages/pages.dart';
 
+import 'constants/text_constants.dart';
+
 void main() {
   DI.inject();
 
   return runApp(
     GetMaterialApp(
-      title: "RS2Lab - Pests App",
+      title: "${TextConstants.RS2LAB} - Pests App",
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xffab162b),
