@@ -2,19 +2,21 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 class ImageFileEntity {
   String name;
-
-  Uint8List? bytes;
-
   String? path;
+  Uint8List? bytes;
+  File? _file;
 
-  ImageFileEntity({required this.name, this.bytes, this.path});
+  ImageFileEntity({required this.name, this.bytes, this.path}) {
+    _file = path != null ? File(path!) : null;
+  }
 
   Widget toImageWidget({double? width, double? height, BoxFit? fit}) =>
-      path != null
-          ? Image.file(File(path!), width: width, height: height, fit: fit)
+      _file != null
+          ? Image.file(_file!, width: width, height: height, fit: fit)
           : bytes != null
               ? Image.memory(bytes!, width: width, height: height, fit: fit)
               : SizedBox(
@@ -28,4 +30,9 @@ class ImageFileEntity {
                     ),
                   ),
                 );
+
+  MultipartFile? toMultipartFile() => MultipartFile.fromBytes(
+        _file?.readAsBytesSync() ?? bytes ?? [],
+        filename: name,
+      );
 }

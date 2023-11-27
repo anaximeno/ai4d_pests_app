@@ -1,11 +1,12 @@
 import 'package:ai4d_pests_app/domain/entities/image_file.dart';
 
-class ClassificaitonRequestEntity {
+class ClassificationRequestEntity {
   ImageFileEntity? image;
 
-  ClassificaitonRequestEntity(this.image);
+  ClassificationRequestEntity(this.image);
 
   Map<String, dynamic> toJson() => {
-        "input": image,
+        "input": image?.toMultipartFile(),
+        "type": "image",
       };
 }
