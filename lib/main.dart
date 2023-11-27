@@ -22,7 +22,7 @@ void main() {
       getPages: [
         GetPage(
           name: Routes.CLASSIFICATION,
-          page: () => ClassificationPage(),
+          page: () => const ClassificationPage(),
         ),
         GetPage(
           name: Routes.INFORMATIONS,

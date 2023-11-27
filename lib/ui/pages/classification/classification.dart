@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ClassificationPage extends GetView<ClassificationController> {
-  final scrollController = ScrollController();
+  final double contentWidth;
 
-  ClassificationPage({super.key});
+  const ClassificationPage({super.key, this.contentWidth = 500});
 
   @override
   Widget build(BuildContext context) {
@@ -23,30 +23,37 @@ class ClassificationPage extends GetView<ClassificationController> {
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: SizedBox(
-            width: 500,
+            width: context.width,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Obx(
-                  () => controller.image == null
-                      ? BigButton(
-                          text: "Pick Image",
-                          onClik: controller.pickImageFile,
-                        )
-                      : const ImageClassificationBox(
-                          height: 400,
-                        ),
+                SizedBox(
+                  width: contentWidth,
+                  child: Obx(
+                    () => controller.image == null
+                        ? BigButton(
+                            text: "Pick Image",
+                            onClik: controller.pickImageFile,
+                          )
+                        : const ImageClassificationBox(
+                            height: 400,
+                          ),
+                  ),
                 ),
-                Obx(
-                  () => controller.loadingManganer
-                          .isLoading(controller.getClassifiedPestInfo.hashCode)
-                      ? const TextLinearProgressIndicator(
-                          text: "Querying informations about the pest...",
-                        )
-                      : controller.classifiedPestEntity != null
-                          ? InfoSection(pest: controller.classifiedPestEntity!)
-                          : Container(),
+                SizedBox(
+                  width: contentWidth,
+                  child: Obx(
+                    () => controller.loadingManganer.isLoading(
+                            controller.getClassifiedPestInfo.hashCode)
+                        ? const TextLinearProgressIndicator(
+                            text: "Querying informations about the pest...",
+                          )
+                        : controller.classifiedPestEntity != null
+                            ? InfoSection(
+                                pest: controller.classifiedPestEntity!)
+                            : Container(),
+                  ),
                 ),
               ],
             ),
