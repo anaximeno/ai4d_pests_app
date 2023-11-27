@@ -1,10 +1,10 @@
 enum LoadingState {
   loading,
-  stopped,
+  none,
 }
 
 extension LoadingStateControl on LoadingState {
   bool isLoading() => this == LoadingState.loading;
 
-  bool isStopped() => this == LoadingState.stopped;
+  bool isNone() => this == LoadingState.none;
 }
