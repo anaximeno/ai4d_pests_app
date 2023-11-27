@@ -26,8 +26,7 @@ class ClassificationPage extends GetView<ClassificationController> {
                       text: "Pick Image",
                       onClik: controller.pickImageFile,
                     )
-                  : ImageClassificationBox(
-                      image: controller.image!,
+                  : const ImageClassificationBox(
                       width: 500,
                       height: 400,
                     ),
