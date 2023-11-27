@@ -7,7 +7,7 @@ class TextLinearProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.titleMedium;
+    final textStyle = Theme.of(context).textTheme.bodyLarge;
 
     return Column(
       children: [

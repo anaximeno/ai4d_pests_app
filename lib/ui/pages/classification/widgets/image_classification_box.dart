@@ -21,8 +21,26 @@ class ImageClassificationBox extends GetView<ClassificationController> {
               const TextLinearProgressIndicator(
                 text: 'Classificating Image',
               ),
-              const SizedBox(height: 5),
+            } else ...{
+              RichText(
+                text: TextSpan(
+                  text: 'Scientific Name: ',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: controller
+                              .classificationResponse?.output?.result?.label
+                              ?.toUpperCase() ??
+                          "-",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
             },
+            const SizedBox(height: 5),
             controller.image?.toImageWidget(
                   width: width,
                   height: height,
