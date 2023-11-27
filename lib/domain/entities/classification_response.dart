@@ -15,4 +15,8 @@ class ClassificationResponseEntity {
             : null,
         probSum: json["prob_sum"] as double?,
       );
+
+  double? get resultProb => output?.result?.prob;
+
+  String? get resultLabel => output?.result?.label;
 }

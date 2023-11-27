@@ -9,6 +9,18 @@ class ImageClassificationBox extends GetView<ClassificationController> {
 
   const ImageClassificationBox({super.key, this.width, this.height});
 
+  String? get classificationConfidenceRateText {
+    final prob = controller.classificationResponse?.resultProb;
+
+    return prob == null
+        ? "-"
+        : prob >= 0.85
+            ? "HIGH"
+            : prob >= 0.65
+                ? "MID"
+                : "LOW";
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -22,22 +34,42 @@ class ImageClassificationBox extends GetView<ClassificationController> {
                 text: 'Classificating Image',
               ),
             } else ...{
-              RichText(
-                text: TextSpan(
-                  text: 'Scientific Name: ',
-                  style: Theme.of(context).textTheme.bodyLarge,
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: controller
-                              .classificationResponse?.output?.result?.label
-                              ?.toUpperCase() ??
-                          "-",
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      text: 'Name: ',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: controller.classificationResponse?.resultLabel
+                                  ?.toUpperCase() ??
+                              "-",
+                          style:
+                              Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      text: "Confidence: ",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: classificationConfidenceRateText,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(fontWeight: FontWeight.w700),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               ),
             },
             const SizedBox(height: 5),
