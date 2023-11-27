@@ -1,4 +1,5 @@
 import 'package:ai4d_pests_app/domain/controllers/classification.dart';
+import 'package:ai4d_pests_app/ui/components/info_highlighted.dart';
 import 'package:ai4d_pests_app/ui/components/text_linear_loading_bar_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,7 @@ class ImageClassificationBox extends GetView<ClassificationController> {
 
   const ImageClassificationBox({super.key, this.width, this.height});
 
-  String? get classificationConfidenceRateText {
+  String get classificationConfidenceRateText {
     final prob = controller.classificationResponse?.resultProb;
 
     return prob == null
@@ -34,7 +35,8 @@ class ImageClassificationBox extends GetView<ClassificationController> {
       child: Obx(
         () => Column(
           children: [
-            if (controller.classificationResponse == null) ...{
+            if (controller.loadingManganer
+                .isLoading(controller.pickImageFile.hashCode)) ...{
               const TextLinearProgressIndicator(
                 text: 'Classificating Image',
               ),
@@ -42,39 +44,17 @@ class ImageClassificationBox extends GetView<ClassificationController> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  RichText(
-                    text: TextSpan(
-                      text: 'Name: ',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: controller.classificationResponse?.resultLabel
-                                  ?.toUpperCase() ??
-                              "-",
-                          style:
-                              Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                        ),
-                      ],
-                    ),
+                  InfoHighlightedText(
+                    infoKey: 'Name',
+                    infoValue: controller.classificationResponse?.resultLabel
+                            ?.toUpperCase() ??
+                        "-",
                   ),
                   Tooltip(
                     message: "Percentage = $percentageConfidenceRateText",
-                    child: RichText(
-                      text: TextSpan(
-                        text: "Confidence: ",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: classificationConfidenceRateText,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge
-                                ?.copyWith(fontWeight: FontWeight.w700),
-                          )
-                        ],
-                      ),
+                    child: InfoHighlightedText(
+                      infoKey: "Confidence",
+                      infoValue: classificationConfidenceRateText,
                     ),
                   ),
                 ],
@@ -83,7 +63,7 @@ class ImageClassificationBox extends GetView<ClassificationController> {
             const SizedBox(height: 5),
             controller.image?.toImageWidget(
                   width: width,
-                  height: height,
+                  height: height != null ? height! - 30 : null,
                   fit: BoxFit.fill,
                 ) ??
                 SizedBox(

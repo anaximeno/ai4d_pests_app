@@ -20,9 +20,6 @@ class ClassificationRepository {
       final response = await _api.post(
         ApiRoutes.CLASSIFICATION,
         body: FormData.fromMap(item.toJson()),
-        // headers: {
-        //   'Authorization': 'Token 43bee2d65436af4503e86c5fde3357682e5166a3',
-        // },
       );
 
       return ClassificationResponseEntity.fromJson(
