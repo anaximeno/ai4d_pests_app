@@ -11,7 +11,7 @@ class ClassificationResponseEntity {
       ClassificationResponseEntity(
         modelName: json["model"] as String?,
         output: json["output"] != null
-            ? ClassificationOutputEntity.fromJson(json)
+            ? ClassificationOutputEntity.fromJson(json["output"])
             : null,
         probSum: json["prob_sum"] as double?,
       );

@@ -9,16 +9,12 @@ class ClassificationOutputEntity {
   factory ClassificationOutputEntity.fromJson(Map<String, dynamic> json) =>
       ClassificationOutputEntity(
         result: json["result"] != null
-            ? ClassificationResultEntity.fromJson(
-                json["result"] as Map<String, dynamic>,
-              )
+            ? ClassificationResultEntity.fromJson(json["result"])
             : null,
         all: json["all"] != null
             ? (json["all"] as List<dynamic>?)
                 ?.map(
-                  (e) => ClassificationResultEntity.fromJson(
-                    e as Map<String, dynamic>,
-                  ),
+                  (e) => ClassificationResultEntity.fromJson(e),
                 )
                 .toList()
             : null,
