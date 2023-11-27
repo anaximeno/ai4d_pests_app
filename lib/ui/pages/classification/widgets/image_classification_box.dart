@@ -21,6 +21,11 @@ class ImageClassificationBox extends GetView<ClassificationController> {
                 : "LOW";
   }
 
+  String? get percentageConfidenceRateText {
+    final prob = controller.classificationResponse?.resultProb;
+    return prob != null ? "${prob.toStringAsFixed(2)}%" : "-";
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -54,19 +59,22 @@ class ImageClassificationBox extends GetView<ClassificationController> {
                       ],
                     ),
                   ),
-                  RichText(
-                    text: TextSpan(
-                      text: "Confidence: ",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: classificationConfidenceRateText,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.copyWith(fontWeight: FontWeight.w700),
-                        )
-                      ],
+                  Tooltip(
+                    message: "Percentage = $percentageConfidenceRateText",
+                    child: RichText(
+                      text: TextSpan(
+                        text: "Confidence: ",
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: classificationConfidenceRateText,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.copyWith(fontWeight: FontWeight.w700),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
