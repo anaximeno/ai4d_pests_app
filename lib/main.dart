@@ -11,6 +11,7 @@ void main() {
 
   return runApp(
     GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "${TextConstants.RS2LAB} - Pests App",
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
