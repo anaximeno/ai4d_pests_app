@@ -1,6 +1,6 @@
 import 'package:ai4d_pests_app/constants/routes.dart';
-import 'package:ai4d_pests_app/ui/components/app_bar.dart';
 import 'package:ai4d_pests_app/ui/components/big_button.dart';
+import 'package:ai4d_pests_app/ui/components/rs2lab_title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,9 +10,15 @@ class HomePage extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PestsAppBar(
-        leading: Container(),
-        leadingWidth: 0,
+      appBar: AppBar(
+        title: RS2LabTitleWidget(
+          trailingSpans: [
+            TextSpan(
+              text: " - Pests App",
+              style: Theme.of(context).appBarTheme.titleTextStyle,
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: Column(

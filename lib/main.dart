@@ -1,5 +1,6 @@
 import 'package:ai4d_pests_app/constants/routes.dart';
 import 'package:ai4d_pests_app/infra/di.dart';
+import 'package:ai4d_pests_app/ui/style/theme.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:ai4d_pests_app/ui/pages/pages.dart';
@@ -13,12 +14,7 @@ void main() {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "${TextConstants.RS2LAB} - Pests App",
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xffab162b),
-        ),
-        useMaterial3: true,
-      ),
+      theme: Theming.theme,
       home: const HomePage(),
       getPages: [
         GetPage(
