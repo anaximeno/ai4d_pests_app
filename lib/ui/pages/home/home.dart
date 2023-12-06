@@ -32,10 +32,10 @@ class HomePage extends GetView {
             const SizedBox(
               height: 20,
             ),
-            BigButton(
-              text: "Informations",
-              onClik: () => Get.toNamed(Routes.INFORMATIONS),
-            ),
+            // BigButton(
+            //   text: "Informations",
+            //   onClik: () => Get.toNamed(Routes.INFORMATIONS),
+            // ),
           ],
         ),
       ),
