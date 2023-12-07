@@ -35,4 +35,13 @@ class PestEntity {
                 .toList()
             : null,
       );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'scientific_name': scientificName,
+        'popular_name': popularName,
+        'description': description,
+        'crops_affected': cropsAffected?.map((e) => e.toJson()).toList(),
+        'control_methods': controlMethods?.map((e) => e.toJson()).toList(),
+      }..removeWhere((key, value) => value == null);
 }
