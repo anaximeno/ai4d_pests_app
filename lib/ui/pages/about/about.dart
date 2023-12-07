@@ -1,8 +1,9 @@
+import 'package:ai4d_pests_app/domain/controllers/about.dart';
 import 'package:ai4d_pests_app/ui/components/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AboutPage extends GetView {
+class AboutPage extends GetView<AboutController> {
   final double contentWidth;
 
   const AboutPage({super.key, this.contentWidth = 500});
@@ -54,6 +55,41 @@ class AboutPage extends GetView {
                     ],
                   ),
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: Text(
+                  "Partners",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    controller.partnersLogoAssests[0],
+                    width: contentWidth / 2 - 20,
+                  ),
+                  Image.asset(
+                    controller.partnersLogoAssests[1],
+                    width: contentWidth / 2 - 20,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    controller.partnersLogoAssests[2],
+                    width: contentWidth / 2 - 20,
+                  ),
+                  Image.asset(
+                    controller.partnersLogoAssests[3],
+                    width: contentWidth / 2 - 20,
+                  ),
+                ],
               ),
             ],
           ),
