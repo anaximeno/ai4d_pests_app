@@ -1,5 +1,6 @@
 import 'package:ai4d_pests_app/domain/controllers/about.dart';
 import 'package:ai4d_pests_app/domain/controllers/classification.dart';
+import 'package:ai4d_pests_app/domain/controllers/information.dart';
 import 'package:ai4d_pests_app/domain/repositories/classification.dart';
 import 'package:ai4d_pests_app/domain/repositories/pests.dart';
 import 'package:ai4d_pests_app/helpers/loading_manager.dart';
@@ -14,10 +15,14 @@ abstract class DI {
     Get.put(LoadingManaganer(), permanent: true);
     Get.lazyPut(() => ClassificationRepository(Get.find()), fenix: true);
     Get.lazyPut(() => PestsRepository(Get.find()), fenix: true);
+    Get.lazyPut(() => AboutController(), fenix: true);
     Get.lazyPut(
       () => ClassificationController(Get.find(), Get.find(), Get.find()),
       fenix: true,
     );
-    Get.lazyPut(() => AboutController(), fenix: true);
+    Get.lazyPut(
+      () => InformationController(Get.find(), Get.find()),
+      fenix: true,
+    );
   }
 }
