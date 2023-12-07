@@ -1,6 +1,6 @@
 import 'package:ai4d_pests_app/domain/controllers/classification.dart';
+import 'package:ai4d_pests_app/ui/components/app_bar.dart';
 import 'package:ai4d_pests_app/ui/components/big_button.dart';
-import 'package:ai4d_pests_app/ui/components/rs2lab_title.dart';
 import 'package:ai4d_pests_app/ui/components/text_linear_loading_bar_indicator.dart';
 import 'package:ai4d_pests_app/ui/pages/classification/widgets/image_classification_box.dart';
 import 'package:ai4d_pests_app/ui/pages/classification/widgets/info_section.dart';
@@ -15,21 +15,9 @@ class ClassificationPage extends GetView<ClassificationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: RS2LabTitleWidget(
-          trailingSpans: [
-            TextSpan(
-              text: " - Pests Classification",
-              style: Theme.of(context).appBarTheme.titleTextStyle,
-            ),
-          ],
-        ),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(50),
-          ),
-        ),
-      ),
+      appBar: const DefaultAppBar(
+        pageTitle: "Pests Classification",
+      ).build(context),
       body: Center(
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),

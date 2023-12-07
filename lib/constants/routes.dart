@@ -6,4 +6,6 @@ abstract class Routes {
   static const CLASSIFICATION = '/classification';
 
   static const INFORMATIONS = '/informations';
+
+  static const ABOUT = "/about";
 }
