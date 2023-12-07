@@ -133,4 +133,10 @@ class ClassificationController extends GetxController {
       );
     }
   }
+
+  void reset() {
+    image = null;
+    classifiedPestEntity = null;
+    classificationResponse = null;
+  }
 }
