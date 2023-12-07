@@ -24,6 +24,11 @@ class ClassificationPage extends GetView<ClassificationController> {
             ),
           ],
         ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(50),
+          ),
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(

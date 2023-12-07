@@ -19,6 +19,11 @@ class HomePage extends GetView {
             ),
           ],
         ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(50),
+          ),
+        ),
       ),
       body: Center(
         child: Column(

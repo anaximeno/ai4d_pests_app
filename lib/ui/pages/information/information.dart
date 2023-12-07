@@ -18,6 +18,11 @@ class InformationPage extends GetView<InformationController> {
             ),
           ],
         ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(50),
+          ),
+        ),
       ),
     );
   }
