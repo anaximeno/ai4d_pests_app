@@ -3,6 +3,7 @@ import 'package:ai4d_pests_app/domain/entities/crop.dart';
 
 class PestEntity {
   int? id;
+  String? slug;
   String? scientificName;
   String? popularName;
   String? description;
@@ -12,6 +13,7 @@ class PestEntity {
 
   PestEntity({
     this.id,
+    this.slug,
     this.scientificName,
     this.popularName,
     this.description,
@@ -21,6 +23,7 @@ class PestEntity {
 
   factory PestEntity.fromJson(Map<String, dynamic> json) => PestEntity(
         id: json["id"] as int?,
+        slug: json["slug"] as String?,
         scientificName: json["scientific_name"] as String?,
         popularName: json["popular_name"] as String?,
         description: json["description"] as String?,
@@ -38,6 +41,7 @@ class PestEntity {
 
   Map<String, dynamic> toJson() => {
         'id': id,
+        'slug': slug,
         'scientific_name': scientificName,
         'popular_name': popularName,
         'description': description,
