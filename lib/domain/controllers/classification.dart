@@ -11,9 +11,7 @@ import 'package:ai4d_pests_app/ui/components/basic_alert_dialog.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 
-class ClassificationController extends GetxController {
-  final LoadingManaganer loadingManganer;
-
+class ClassificationController extends GetxController with LoadingManaganer {
   final ClassificationRepository _classificationRepository;
 
   final PestsRepository _pestsRepository;
@@ -27,7 +25,6 @@ class ClassificationController extends GetxController {
   // --- class initialization ---
 
   ClassificationController(
-    this.loadingManganer,
     this._classificationRepository,
     this._pestsRepository,
   );
@@ -50,7 +47,7 @@ class ClassificationController extends GetxController {
       _classificationResponse.value = value;
 
   void pickImageFile() async {
-    loadingManganer.addLoading(pickImageFile.hashCode);
+    addLoadingFor(pickImageFile.hashCode);
 
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
@@ -75,10 +72,10 @@ class ClassificationController extends GetxController {
         path: path,
       );
 
-      loadingManganer.removeLoading(pickImageFile.hashCode);
+      removeLoadingFor(pickImageFile.hashCode);
       classifyImage(image!);
     } else {
-      loadingManganer.removeLoading(pickImageFile.hashCode);
+      removeLoadingFor(pickImageFile.hashCode);
       Get.dialog(
         BasicAlertDialog(
           title: "Attention!",
@@ -90,7 +87,7 @@ class ClassificationController extends GetxController {
   }
 
   Future<void> classifyImage(ImageFileEntity image) async {
-    loadingManganer.addLoading(classifyImage.hashCode);
+    addLoadingFor(classifyImage.hashCode);
 
     try {
       classificationResponse = await _classificationRepository.classify(
@@ -101,10 +98,10 @@ class ClassificationController extends GetxController {
         getClassifiedPestInfo(classificationResponse!.output!.result!.label!);
       }
 
-      loadingManganer.removeLoading(classifyImage.hashCode);
+      removeLoadingFor(classifyImage.hashCode);
     } catch (e) {
       log("Got error while trying to classify the image!", error: e);
-      loadingManganer.removeLoading(classifyImage.hashCode);
+      removeLoadingFor(classifyImage.hashCode);
 
       Get.dialog(
         BasicAlertDialog(
@@ -121,12 +118,12 @@ class ClassificationController extends GetxController {
   }
 
   Future<void> getClassifiedPestInfo(String label) async {
-    loadingManganer.addLoading(getClassifiedPestInfo.hashCode);
+    addLoadingFor(getClassifiedPestInfo.hashCode);
     try {
       classifiedPestEntity = await _pestsRepository.getPestBySlug(label);
-      loadingManganer.removeLoading(getClassifiedPestInfo.hashCode);
+      removeLoadingFor(getClassifiedPestInfo.hashCode);
     } catch (e) {
-      loadingManganer.removeLoading(getClassifiedPestInfo.hashCode);
+      removeLoadingFor(getClassifiedPestInfo.hashCode);
       log(
         "Got error while trying to get more information of the classified pest!",
         error: e,

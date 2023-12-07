@@ -48,8 +48,9 @@ class ClassificationPage extends GetView<ClassificationController> {
                       SizedBox(
                         width: contentWidth,
                         child: Obx(
-                          () => controller.loadingManganer.isLoading(
-                                  controller.getClassifiedPestInfo.hashCode)
+                          () => controller.isLoadingFor(
+                            controller.getClassifiedPestInfo.hashCode,
+                          )
                               ? const TextLinearProgressIndicator(
                                   text:
                                       "Querying informations about the pest...",

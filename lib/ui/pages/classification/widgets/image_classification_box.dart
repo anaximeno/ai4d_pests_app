@@ -35,8 +35,7 @@ class ImageClassificationBox extends GetView<ClassificationController> {
       child: Obx(
         () => Column(
           children: [
-            if (controller.loadingManganer
-                .isLoading(controller.pickImageFile.hashCode)) ...{
+            if (controller.isLoadingFor(controller.classifyImage.hashCode)) ...{
               const TextLinearProgressIndicator(
                 text: 'Classificating Image',
               ),
