@@ -24,13 +24,13 @@ class HomePage extends GetView {
               text: "Classification",
               onClik: () => Get.toNamed(Routes.CLASSIFICATION),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            BigButton(
-              text: "Informations",
-              onClik: () => Get.toNamed(Routes.INFORMATIONS),
-            ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // BigButton(
+            //   text: "Informations",
+            //   onClik: () => Get.toNamed(Routes.INFORMATIONS),
+            // ),
             const SizedBox(
               height: 20,
             ),
