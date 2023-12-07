@@ -13,5 +13,14 @@ abstract class Theming {
       ),
     ),
     useMaterial3: true,
+    textTheme: const TextTheme(
+      bodyMedium: TextStyle(
+        height: 1.75,
+        letterSpacing: 1,
+      ),
+      bodyLarge: TextStyle(
+        height: 2,
+      ),
+    ),
   );
 }

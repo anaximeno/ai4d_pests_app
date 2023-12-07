@@ -63,7 +63,7 @@ class ImageClassificationBox extends GetView<ClassificationController> {
             const SizedBox(height: 5),
             controller.image?.toImageWidget(
                   width: width,
-                  height: height != null ? height! - 30 : null,
+                  height: height != null ? height! - 37 : null,
                   fit: BoxFit.fill,
                 ) ??
                 SizedBox(
