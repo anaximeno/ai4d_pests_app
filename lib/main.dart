@@ -1,5 +1,6 @@
 import 'package:ai4d_pests_app/constants/routes.dart';
 import 'package:ai4d_pests_app/infra/di.dart';
+import 'package:ai4d_pests_app/infra/env.dart';
 import 'package:ai4d_pests_app/ui/style/theme.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,10 @@ void main() {
           page: () => const InformationPage(),
         ),
       ],
+      onReady: () {
+        Env env = Get.find();
+        env.loadConfigs();
+      },
     ),
   );
 }

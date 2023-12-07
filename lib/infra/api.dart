@@ -1,17 +1,21 @@
-import 'package:ai4d_pests_app/constants/env_constants.dart';
 import 'package:dio/dio.dart' as dio;
 
+import 'env.dart';
+
 class Api {
-  final String baseURL;
-  final _dio = dio.Dio();
+  final Env _env;
+  final dio.Dio _dio;
 
-  final defaultApiHeaders = {
-    'Authorization': 'Token ${EnvConstants.apiToken}',
-  };
+  Api(this._env) : _dio = dio.Dio();
 
-  Api({this.baseURL = "http://127.0.0.1:8000/api"});
+  // NOTE: the reason to retrieve it this ways instead of definig an attribute
+  // its because the env configs are loaded after the construction of the object
+  // of this class.
+  Map<String, dynamic> get defaultApiHeaders => {
+        'Authorization': 'Token ${_env.apiAccessToken}',
+      };
 
-  String parseRoute(String route) => "$baseURL$route";
+  String parseRoute(String route) => "${_env.apiAddress}$route";
 
   Future<dio.Response> post(String route,
       {required Object body, Map<String, String>? headers}) {
