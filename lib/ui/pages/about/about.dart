@@ -45,7 +45,18 @@ class AboutPage extends GetView<AboutController> {
                             ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       TextSpan(
-                        text: " at the University of Cape Verde granted under "
+                        text: " by the ",
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      TextSpan(
+                        text: "Responsible and Smart Solutions Lab",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: " at the University of Cape Verde, granted under "
                             "the AI4D Africa scholarship program. Its goal is "
                             "to help detect and identify potential pests "
                             "affecting crops and alert farmers in a timely "
