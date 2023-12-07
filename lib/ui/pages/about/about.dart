@@ -42,7 +42,7 @@ class AboutPage extends GetView<AboutController> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w500),
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       TextSpan(
                         text: " at the University of Cape Verde granted under "
