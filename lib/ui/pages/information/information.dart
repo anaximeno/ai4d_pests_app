@@ -23,7 +23,7 @@ class InformationPage extends GetView<InformationController> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Text(
                         "Pests Catalog",
                         style: Theme.of(context).textTheme.titleLarge,
@@ -41,10 +41,6 @@ class InformationPage extends GetView<InformationController> {
                             width: contentWidth,
                             child: Column(
                               children: [
-                                Image.asset(
-                                  "assets/images/pests/${item.slug ?? ''}.jpg",
-                                  width: contentWidth,
-                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                     top: 10.0,
@@ -52,36 +48,42 @@ class InformationPage extends GetView<InformationController> {
                                   child: Container(
                                     width: contentWidth,
                                     decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(50),
-                                      ),
-                                      color: Theming.mainColor.withAlpha(20),
+                                      color: Theming.mainColor.withAlpha(15),
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                    child: Column(
                                       children: [
-                                        Text(
-                                          "  ${item.scientificName?.capitalize ?? '-'}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium,
+                                        Image.asset(
+                                          "assets/images/pests/${item.slug ?? ''}.jpg",
+                                          width: contentWidth,
                                         ),
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            controller.showInfoForPestByIndex(
-                                              index,
-                                            );
-                                          },
-                                          style: ButtonStyle(
-                                            shadowColor:
-                                                MaterialStateProperty.all(
-                                              Colors.transparent,
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "  ${item.scientificName?.capitalize ?? '-'}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium,
                                             ),
-                                          ),
-                                          child: const Text("More Info..."),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                controller
+                                                    .showInfoForPestByIndex(
+                                                  index,
+                                                );
+                                              },
+                                              style: ButtonStyle(
+                                                shadowColor:
+                                                    MaterialStateProperty.all(
+                                                  Colors.transparent,
+                                                ),
+                                              ),
+                                              child: const Text("More Info..."),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),

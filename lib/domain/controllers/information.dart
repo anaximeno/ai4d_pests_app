@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ai4d_pests_app/constants/routes.dart';
 import 'package:ai4d_pests_app/domain/entities/pest.dart';
 import 'package:ai4d_pests_app/domain/repositories/pests.dart';
 import 'package:ai4d_pests_app/helpers/loading_manager.dart';
@@ -29,6 +30,12 @@ class InformationController extends GetxController with LoadingManaganer {
   }
 
   void showInfoForPestByIndex(int index) {
-    // TODO
+    final item = pestsList[index];
+
+    Get.toNamed(
+      Routes.SELECT_PEST_INFORMATION,
+      arguments: item,
+      parameters: {'slug': item.slug ?? 'undefined'},
+    );
   }
 }

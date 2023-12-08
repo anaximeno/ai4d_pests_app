@@ -53,6 +53,7 @@ class InfoSection extends StatelessWidget {
             padding: const EdgeInsets.only(top: 15, bottom: 8),
             child: Text(
               "Crops Affected",
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontSize: 20,
                   ),
