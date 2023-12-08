@@ -13,7 +13,7 @@ class HomePage extends GetView {
       appBar: DefaultAppBar(
         leadingWidth: 0,
         leading: Container(),
-        pageTitle: "The University of Cape Verde"
+        pageTitle: "The University of Cape Verde",
       ).build(context),
       body: Center(
         child: Column(
@@ -24,13 +24,13 @@ class HomePage extends GetView {
               text: "Classification",
               onClik: () => Get.toNamed(Routes.CLASSIFICATION),
             ),
-            // const SizedBox(
-            //   height: 20,
-            // ),
-            // BigButton(
-            //   text: "Informations",
-            //   onClik: () => Get.toNamed(Routes.INFORMATIONS),
-            // ),
+            const SizedBox(
+              height: 20,
+            ),
+            BigButton(
+              text: "Informations",
+              onClik: () => Get.toNamed(Routes.INFORMATIONS),
+            ),
             const SizedBox(
               height: 20,
             ),

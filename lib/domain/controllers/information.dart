@@ -5,14 +5,12 @@ import 'package:ai4d_pests_app/domain/repositories/pests.dart';
 import 'package:ai4d_pests_app/helpers/loading_manager.dart';
 import 'package:get/get.dart';
 
-class InformationController extends GetxController {
+class InformationController extends GetxController with LoadingManaganer {
   final PestsRepository _pestsRepository;
-
-  final LoadingManaganer _loadingManaganer;
 
   final _pestsList = RxList(<PestEntity>[]);
 
-  InformationController(this._loadingManaganer, this._pestsRepository) {
+  InformationController(this._pestsRepository) {
     getPests();
   }
 
@@ -21,12 +19,16 @@ class InformationController extends GetxController {
   set pestsList(List<PestEntity> value) => _pestsList.value = value;
 
   void getPests() async {
-    _loadingManaganer.addLoading(getPests.hashCode);
+    addLoadingFor(getPests.hashCode);
     try {
       pestsList = await _pestsRepository.getAllPests();
     } catch (e) {
       log("Couldn't get all pests!", error: e);
     }
-    _loadingManaganer.removeLoading(getPests.hashCode);
+    removeLoadingFor(getPests.hashCode);
+  }
+
+  void showInfoForPestByIndex(int index) {
+    // TODO
   }
 }
