@@ -22,11 +22,15 @@ class AboutPage extends GetView<AboutController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Text(
                   "About This Project",
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
+              ),
+              Image.asset(
+                "assets/images/logo-03.png",
+                width: contentWidth - 10,
               ),
               SizedBox(
                 width: contentWidth,
