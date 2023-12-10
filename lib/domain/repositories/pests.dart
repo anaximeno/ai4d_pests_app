@@ -1,22 +1,30 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:ai4d_pests_app/infra/env.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:ai4d_pests_app/constants/apiroutes.dart';
 import 'package:ai4d_pests_app/domain/entities/pest.dart';
 import 'package:ai4d_pests_app/infra/api.dart';
 
 class PestsRepository {
   final Api _api;
+  final Env _env;
 
-  PestsRepository(this._api);
+  PestsRepository(this._api, this._env);
 
   Future<PestEntity> getPestBySlug(String slug) async {
     try {
       slug = slug.replaceAll(r' ', '-');
 
-      final respoonse = await _api.get(ApiRoutes.pestBySlug(slug));
+      final response = await _api.get(
+        ApiRoutes.pestBySlug(slug),
+        cacheOptions: _api.cacheOptions.copyWith(
+            policy: CachePolicy.forceCache,
+            maxStale: const Nullable(Duration(minutes: 4))),
+      );
 
-      return PestEntity.fromJson(respoonse.data as Map<String, dynamic>);
+      return PestEntity.fromJson(response.data as Map<String, dynamic>);
     } on HttpException {
       log("Error sending request to get pest info by slug!");
       rethrow;
@@ -27,8 +35,14 @@ class PestsRepository {
 
   Future<PestEntity> getPestById(int id) async {
     try {
-      final respoonse = await _api.get(ApiRoutes.pestById(id));
-      return PestEntity.fromJson(respoonse.data as Map<String, dynamic>);
+      final response = await _api.get(
+        ApiRoutes.pestById(id),
+        cacheOptions: _api.cacheOptions.copyWith(
+          policy: CachePolicy.forceCache,
+          maxStale: const Nullable(Duration(minutes: 4)),
+        ),
+      );
+      return PestEntity.fromJson(response.data as Map<String, dynamic>);
     } on HttpException {
       log("Error sending request to get pest info by id!");
       rethrow;
@@ -39,8 +53,16 @@ class PestsRepository {
 
   Future<List<PestEntity>> getAllPests() async {
     try {
-      final response = await _api.get(ApiRoutes.PESTS);
+      final response = await _api.get(
+        ApiRoutes.PESTS,
+        cacheOptions: _api.cacheOptions.copyWith(
+          policy: CachePolicy.forceCache,
+          maxStale: Nullable(Duration(minutes: _env.cacheExpireMinutes)),
+        ),
+      );
+
       final data = response.data as List<dynamic>;
+
       return data
           .map((e) => PestEntity.fromJson(e as Map<String, dynamic>))
           .toList();

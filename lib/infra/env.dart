@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:ai4d_pests_app/infra/api.dart';
 import 'package:flutter/services.dart';
 
 class Env {
@@ -9,6 +10,8 @@ class Env {
   String _apiAddress = "";
 
   String _apiAccessToken = "";
+
+  int _cacheExpireMinutes = DEFAULT_CACHE_EXPIRE_MINUTES;
 
   Env({this.configFilePath = "assets/configs/env.json"});
 
@@ -20,6 +23,7 @@ class Env {
 
       _apiAccessToken = configs["API"]["ACCESS_TOKEN"];
       _apiAddress = configs["API"]["ADDRESS"];
+      _cacheExpireMinutes = configs["CACHE_EXPIRE_MINUTES"];
 
       // --- end get configs
 
@@ -36,4 +40,6 @@ class Env {
   String get apiAddress => _apiAddress;
 
   String get apiAccessToken => _apiAccessToken;
+
+  int get cacheExpireMinutes => _cacheExpireMinutes;
 }

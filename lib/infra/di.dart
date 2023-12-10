@@ -12,7 +12,7 @@ abstract class DI {
     Get.put(Env(), permanent: true);
     Get.put(Api(Get.find()), permanent: true);
     Get.lazyPut(() => ClassificationRepository(Get.find()), fenix: true);
-    Get.lazyPut(() => PestsRepository(Get.find()), fenix: true);
+    Get.lazyPut(() => PestsRepository(Get.find(), Get.find()), fenix: true);
     Get.lazyPut(() => AboutController(), fenix: true);
     Get.lazyPut(() => InformationController(Get.find()), fenix: true);
     Get.lazyPut(
