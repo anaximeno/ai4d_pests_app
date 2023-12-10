@@ -16,4 +16,4 @@ PORT=52148
 
 echo -e "*** Running AI4Pests Flutter Frontend in Release Mode ***\n"
 
-TRY flutter run --release -d web-server --web-hostname $HOSTNAME --web-port $PORT
+TRY flutter pub get && flutter run --release -d web-server --web-hostname $HOSTNAME --web-port $PORT
